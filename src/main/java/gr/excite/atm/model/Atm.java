@@ -1,5 +1,8 @@
 package gr.excite.atm.model;
 
+import org.springframework.stereotype.Component;
+
+@Component("atm")
 public class Atm {
 	private int nbrOfTwenties;
 	private int nbrOfFifties;

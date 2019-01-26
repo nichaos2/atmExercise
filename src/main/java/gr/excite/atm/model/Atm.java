@@ -1,4 +1,4 @@
-package model;
+package gr.excite.atm.model;
 
 public class Atm {
 	private int nbrOfTwenties;

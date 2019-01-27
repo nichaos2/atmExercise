@@ -23,7 +23,7 @@ public class AtmRunner {
 		CombinationController combC = (CombinationController) context.getBean("combC");
 		message = (MessageHandler) context.getBean("msg");
 
-		// set chain of Distributes
+		// set chain of Distributers
 		IDistributer distr50s = (Distributer50s) context.getBean("distr50s");
 		IDistributer distr20s = (Distributer20s) context.getBean("distr20s");
 		distr50s.setNextDistributer(distr20s);
@@ -42,6 +42,7 @@ public class AtmRunner {
 		message.display("Thank you. Bye bye!");
 	}
 
+	//
 	private void initialiseATM(AtmController atmC) {
 		System.out.println("Enter number of 20 notes to insert to ATM ");
 		Scanner input = new Scanner(System.in);
@@ -53,6 +54,7 @@ public class AtmRunner {
 		atmC.insert50s(nbrOf50s);
 	}
 
+	//
 	private void withdrawMoney(AtmController atmC, CombinationController combC, IDistributer distr50s,
 			IDistributer distr20s) {
 		message.display("Money in ATM " + atmC.returnTotal());
@@ -75,9 +77,10 @@ public class AtmRunner {
 
 	}
 
+	//
 	private int requestAnotherWithdraw(int n) {
 		message.display("Do you want another withdrawal?\n"
-				+ " Print yes if you want or anything else to terminate the transaction");
+				+ "Print yes if you want or anything else to terminate the transaction");
 		Scanner input = new Scanner(System.in);
 		String answer = input.nextLine();
 		if (answer.toLowerCase().equals("yes"))

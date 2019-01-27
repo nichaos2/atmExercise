@@ -36,7 +36,7 @@ public class MessageHandlerTest {
 	public void testDisplayMessage() {
 		String myMessage = "myMessage";
 		message.display(myMessage);
-		assertEquals(myMessage+"\n", outContent.toString());
+		assertEquals(myMessage+"\n", outContent.toString()); // this fails but the output is the same
 	}	
 	
 	

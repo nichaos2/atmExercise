@@ -12,6 +12,7 @@ public class AtmController implements IAtmController {
 	private Atm atm;
 	@Autowired
 	IMessageHandler message;
+	
 	@Override
 	public void insert20s(int nbrOf20s) {
 		atm.setNbrOfTwenties(nbrOf20s);

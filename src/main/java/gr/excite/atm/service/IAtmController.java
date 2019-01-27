@@ -1,4 +1,4 @@
-package gr.excite.service;
+package gr.excite.atm.service;
 
 public interface IAtmController {
 

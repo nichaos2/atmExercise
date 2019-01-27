@@ -1,11 +1,11 @@
-package gr.excite.service;
+package gr.excite.atm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import gr.excite.atm.model.Atm;
 
-@Service
+@Service("atmC")
 public class AtmController implements IAtmController {
 
 	@Autowired
@@ -23,12 +23,14 @@ public class AtmController implements IAtmController {
 
 	@Override
 	public void remove20s(int nbrOf20s) {
+		System.out.println("removed 20s " + nbrOf20s);
 		atm.setNbrOfTwenties(atm.getNbrOfTwenties() - nbrOf20s);
 	}
 
 	@Override
 	public void remove50s(int nbrOf50s) {
-		atm.setNbrOfTwenties(atm.getNbrOfFifties() - nbrOf50s);
+		System.out.println("removed 50s " + nbrOf50s);
+		atm.setNbrOfFifties(atm.getNbrOfFifties() - nbrOf50s);
 	}
 
 	@Override

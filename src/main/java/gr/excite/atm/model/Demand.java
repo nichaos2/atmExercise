@@ -7,6 +7,13 @@ public class Demand {
 
 	private int amount;
 
+	public Demand() {
+		
+	}
+	public Demand(int amount) {
+		this.amount= amount;
+	}
+	
 	public int getAmount() {
 		return amount;
 	}

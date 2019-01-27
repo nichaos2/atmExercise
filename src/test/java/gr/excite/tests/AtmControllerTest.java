@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import gr.excite.atm.model.Atm;
-import gr.excite.service.IAtmController;
+import gr.excite.atm.service.IAtmController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = ("file:src/main/resources/application-context.xml"))

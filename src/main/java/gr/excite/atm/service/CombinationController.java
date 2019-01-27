@@ -8,8 +8,11 @@ import gr.excite.atm.model.Atm;
 @Service("combC")
 public class CombinationController implements ICombinationController {
 
+	
+	private String combination;
+	
 	@Autowired
-	Atm atm;
+	AtmController atmC;
 
 	@Override
 	public boolean combinationExists(int amount) {
@@ -18,7 +21,8 @@ public class CombinationController implements ICombinationController {
 		int remainderOf50s 	= amount % 50;
 		int nbrOf50s 		= amount/50;
 		if (remainderOf50s == 0) {
-			if (enough50s(nbrOf50s)) {
+			if (isEnough50s(nbrOf50s)) {
+				setCombination("only50s");
 				return true;
 			} 
 		}
@@ -27,7 +31,8 @@ public class CombinationController implements ICombinationController {
 		int remainderOf20s 	= (amount - nbrOf50s * 50)%20;
 		int nbrOf20s 		= (amount - nbrOf50s * 50)/20;
 		if (remainderOf20s == 0) {
-			if (enough20s(nbrOf20s) && enough50s(nbrOf50s)) {
+			if (isEnough20s(nbrOf20s) && isEnough50s(nbrOf50s)) {
+				setCombination("20sAnd50s");
 				return true;
 			}
 		} 
@@ -36,18 +41,19 @@ public class CombinationController implements ICombinationController {
 		int remainderOfOnly20s 	= amount % 20;
 		int nbrOfOnly20s 		= amount / 20;
 		if (remainderOfOnly20s == 0) {
-			if (enough20s(nbrOfOnly20s)) {
+			if (isEnough20s(nbrOfOnly20s)) {
+				setCombination("only20s");
 				return true;
 			} 
 		}
 
-		// if fails
+		// if no combinations
 		System.out.println("Please try another amount which is combination of 20s and 50s");
 		return false;
 	}
 
-	private boolean enough50s(int remainderOf50s) {
-		if (remainderOf50s <= atm.getNbrOfFifties())
+	private boolean isEnough50s(int remainderOf50s) {
+		if (remainderOf50s <= atmC.retrunNbrOf50s())
 			return true;
 
 		// TODO message handler
@@ -55,13 +61,21 @@ public class CombinationController implements ICombinationController {
 		return false;
 	}
 
-	private boolean enough20s(int remainderOf20s) {
-		if (remainderOf20s <= atm.getNbrOfTwenties())
+	private boolean isEnough20s(int remainderOf20s) {
+		if (remainderOf20s <= atmC.returnNbrOf20s())
 			return true;
 
 		// TODO message handler
 		System.out.println("Not enough 20s in this machine");
 		return false;
+	}
+
+	public String getCombination() {
+		return combination;
+	}
+
+	public void setCombination(String combination) {
+		this.combination = combination;
 	}
 
 }

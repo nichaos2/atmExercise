@@ -13,19 +13,22 @@ public class Distributer50s implements IDistributer{
 	
 	@Autowired
 	AtmController atmC;
+	
 	@Autowired
 	Demand demand;
 
 	@Override
 	public void giveMoney(Demand demand) {
 		if(demand.getAmount() >= 50) {
-			int nbrOf50s = demand.getAmount() / 50; 
+			
+			// have to exclude that the combination is of 20s 
+			
+			int nbrOf50s  = demand.getAmount() / 50; 
 			int remainder = demand.getAmount() % 50; 
 			
-			// message handler
+			//TODO message handler
 			System.out.println("Distributed " + nbrOf50s + " 50 note(s)");
 			
-			// 
 			atmC.remove50s(nbrOf50s);
 			
 			if (remainder!=0) this.nextDistributer.giveMoney(new Demand(remainder));

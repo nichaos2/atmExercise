@@ -35,16 +35,28 @@ public class AtmRunner {
 		// way to test multiple times
 		int n = 1;
 		while (n < 2) {
+			
+			// if no money exist exit
+			if(atmC.returnTotal()==0) {
+				message.display("No money exist in the ATM\nTry again later\nQuiting application");
+				System.exit(0);
+			}
+			
+			//
 			atmRunner.withdrawMoney(atmC, combC, distr50s, distr20s);
 			n++;
+			//
 			n = atmRunner.requestAnotherWithdraw(n);
 		}
+		//
 		message.display("Thank you. Bye bye!");
+		System.exit(0);
 	}
 
 	//
 	private void initialiseATM(AtmController atmC) {
-		System.out.println("Enter number of 20 notes to insert to ATM ");
+		message.display("-- Initialise ATM -- ");
+		message.display("Enter number of 20 notes to insert to ATM ");
 		Scanner input = new Scanner(System.in);
 		int nbrOf20s = input.nextInt();
 		message.display("Enter number of 50 notes to insert to ATM ");

@@ -34,8 +34,8 @@ public class AtmRunner {
 		
 		
 		// initialise atm
-		int nbgof20s = 100;
-		int nbrOf50s = 100;
+		int nbgof20s = 1;
+		int nbrOf50s = 1;
 		atm.setNbrOfTwenties(nbgof20s);
 		atm.setNbrOfFifties(nbrOf50s);
 		System.out.println("Money in ATM " + atmC.returnTotal());
@@ -44,8 +44,8 @@ public class AtmRunner {
 		System.out.println("Enter amount to dispense");
 		Scanner input = new Scanner(System.in);
 		int amount = input.nextInt();
-		if (combC.combinationExists(amount)) {
-			System.out.println("We cannot provide this combination of money...\nPlease try again later.\nSorry for the incovenience!");
+		if (!combC.combinationExists(amount)) {
+			System.out.println("We cannot provide this combination of money...\nSorry for the incovenience!");
 			return;
 		}
 		System.out.println("amount "+ amount);

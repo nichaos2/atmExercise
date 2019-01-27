@@ -31,7 +31,7 @@ public class DistributerTest {
 	
 	@Before
 	public void initAtm() {
-		atm.setNbrOfTwenties(100);
+		atm.setNbrOfTwenties(initial20s);
 		System.out.println("Initialised amount in ATM " + (initial20s*20));
 	}
 	

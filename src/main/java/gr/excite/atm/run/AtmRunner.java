@@ -30,14 +30,14 @@ public class AtmRunner {
 		IDistributer distr20s = (Distributer20s) context.getBean("distr20s");
 		distr50s.setNextDistributer(distr20s);
 		
-		
-		
-		
 		// initialise atm
 		int nbgof20s = 1;
 		int nbrOf50s = 1;
 		atm.setNbrOfTwenties(nbgof20s);
 		atm.setNbrOfFifties(nbrOf50s);
+		
+		int n=1;
+		while(n<4) {
 		System.out.println("Money in ATM " + atmC.returnTotal());
 		
 		// get the amount from console
@@ -45,23 +45,18 @@ public class AtmRunner {
 		Scanner input = new Scanner(System.in);
 		int amount = input.nextInt();
 		if (!combC.combinationExists(amount)) {
-			System.out.println("We cannot provide this combination of money...\nSorry for the incovenience!");
-			return;
-		}
-		System.out.println("amount "+ amount);
-
-		// TODO check if it can be given
-		// if yes do the configuration
-		// call dispatcher
+			System.out.println("Sorry for the incovenience!");
+		}else {
 		distr50s.giveMoney(new Demand(amount));
 		
 		// show message
 		System.out.println("Total in ATM " + atmC.returnTotal());
 		System.out.println(atm.getNbrOfTwenties() + " 20 notes remaining");
 		System.out.println(atm.getNbrOfFifties()  + " 50 notes remaining");;
+		}
 		
-		//TODO else if not ask for a different amount
-
+		n++;
+		}
 	}
 
 }

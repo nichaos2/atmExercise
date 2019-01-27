@@ -5,6 +5,6 @@ In Eclipse: File > import > Git > clone URI > enter the clone provided in github
 
 After the project is build updata maven
 
-- Spring framework is included for the injection of objects.
+- Spring framework is included for the dependency injection.
 - JUNIT is used to create tests and to follow a Test Driven Development (TDD) approach.
 - The chain of responsibility design pattern is implemented for the distributers

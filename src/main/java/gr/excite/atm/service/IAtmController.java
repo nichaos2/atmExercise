@@ -8,6 +8,9 @@ public interface IAtmController {
 	public void remove20s(int nbrOf20s);
 	public void remove50s(int nbrOf50s);
 	
+	public int returnNbrOf20s();
+	public int retrunNbrOf50s();
+	
 	public int returnTotal();
 	
 }

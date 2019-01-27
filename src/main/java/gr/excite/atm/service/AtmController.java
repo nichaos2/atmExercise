@@ -20,7 +20,7 @@ public class AtmController implements IAtmController {
 	public void insert50s(int nbrOf50s) {
 		atm.setNbrOfFifties(nbrOf50s);
 	}
-
+	
 	@Override
 	public void remove20s(int nbrOf20s) {
 		System.out.println("removed 20s " + nbrOf20s);
@@ -34,8 +34,20 @@ public class AtmController implements IAtmController {
 	}
 
 	@Override
+	public int returnNbrOf20s() {
+		return atm.getNbrOfTwenties();
+	}
+
+	@Override
+	public int retrunNbrOf50s() {
+		return atm.getNbrOfFifties();
+	}
+	
+	@Override
 	public int returnTotal() {
 		return atm.getNbrOfFifties() * 50 + atm.getNbrOfTwenties() * 20;
 	}
+
+
 
 }

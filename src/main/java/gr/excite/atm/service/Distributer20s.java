@@ -19,7 +19,7 @@ public class Distributer20s implements IDistributer {
 	public void giveMoney(Demand demand) {
 		if(demand.getAmount() >= 20) {
 			int nbrOf20s = demand.getAmount() / 20; 
-			int remainder = demand.getAmount() % 20; 
+			
 			//TODO message handler
 			System.out.println("Distributed " + nbrOf20s + " 20 note(s)");
 			

@@ -20,9 +20,6 @@ public class Distributer50s implements IDistributer{
 	@Override
 	public void giveMoney(Demand demand) {
 		if(demand.getAmount() >= 50) {
-			
-			// have to exclude that the combination is of 20s 
-			
 			int nbrOf50s  = demand.getAmount() / 50; 
 			int remainder = demand.getAmount() % 50; 
 			

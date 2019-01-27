@@ -31,18 +31,19 @@ public class AtmRunner {
 		distr50s.setNextDistributer(distr20s);
 		
 		// initialise atm
-		int nbgof20s = 1;
-		int nbrOf50s = 1;
-		atm.setNbrOfTwenties(nbgof20s);
-		atm.setNbrOfFifties(nbrOf50s);
-		
-		int n=1;
-		while(n<4) {
-		System.out.println("Money in ATM " + atmC.returnTotal());
-		
-		// get the amount from console
-		System.out.println("Enter amount to dispense");
+		System.out.println("Enter number of 20 notes to insert to ATM ");
 		Scanner input = new Scanner(System.in);
+		int nbrOf20s = input.nextInt();
+		System.out.println("Enter number of 50 notes to insert to ATM ");
+		input = new Scanner(System.in);
+		int nbrOf50s = input.nextInt();
+		atmC.insert20s(nbrOf20s);
+		atmC.insert50s(nbrOf50s);
+		
+		// withdraw money
+		System.out.println("Money in ATM " + atmC.returnTotal());
+		System.out.println("Enter amount to dispense");
+		input = new Scanner(System.in);
 		int amount = input.nextInt();
 		if (!combC.combinationExists(amount)) {
 			System.out.println("Sorry for the incovenience!");
@@ -54,9 +55,8 @@ public class AtmRunner {
 		System.out.println(atm.getNbrOfTwenties() + " 20 notes remaining");
 		System.out.println(atm.getNbrOfFifties()  + " 50 notes remaining");;
 		}
-		
-		n++;
-		}
 	}
 
+
+	
 }

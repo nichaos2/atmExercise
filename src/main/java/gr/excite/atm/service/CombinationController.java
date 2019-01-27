@@ -13,7 +13,7 @@ public class CombinationController implements ICombinationController {
 
 	@Override
 	public boolean combinationExists(int amount) {
-
+	
 		// combination of fifties
 		int remainderOf50s 	= amount % 50;
 		int nbrOf50s 		= amount/50;
@@ -41,7 +41,7 @@ public class CombinationController implements ICombinationController {
 			} 
 		}
 
-		// else
+		// if fails
 		System.out.println("Please try another amount which is combination of 20s and 50s");
 		return false;
 	}

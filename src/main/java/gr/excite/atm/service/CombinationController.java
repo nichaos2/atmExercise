@@ -11,6 +11,9 @@ public class CombinationController implements ICombinationController {
 	
 	@Autowired
 	AtmController atmC;
+	
+	@Autowired
+	IMessageHandler message;
 
 	@Override
 	public boolean combinationExists(int amount) {
@@ -46,16 +49,15 @@ public class CombinationController implements ICombinationController {
 		}
 
 		// if no combinations
-		System.out.println("Please try another amount which is combination of 20s and 50s");
+		message.display("Please try another amount which is combination of 20s and 50s");
 		return false;
 	}
 
 	private boolean isEnough50s(int remainderOf50s) {
 		if (remainderOf50s <= atmC.retrunNbrOf50s())
 			return true;
-
-		// TODO message handler
-		System.out.println("Not enough 50s in this machine");
+		
+		message.display("Not enough 50s in this machine");
 		return false;
 	}
 
@@ -63,8 +65,7 @@ public class CombinationController implements ICombinationController {
 		if (remainderOf20s <= atmC.returnNbrOf20s())
 			return true;
 
-		// TODO message handler
-		System.out.println("Not enough 20s in this machine");
+		message.display("Not enough 20s in this machine");
 		return false;
 	}
 

@@ -10,7 +10,8 @@ public class AtmController implements IAtmController {
 
 	@Autowired
 	private Atm atm;
-
+	@Autowired
+	IMessageHandler message;
 	@Override
 	public void insert20s(int nbrOf20s) {
 		atm.setNbrOfTwenties(nbrOf20s);
@@ -23,13 +24,13 @@ public class AtmController implements IAtmController {
 	
 	@Override
 	public void remove20s(int nbrOf20s) {
-		System.out.println("removed 20s " + nbrOf20s);
+		message.display(nbrOf20s + "20s removed");
 		atm.setNbrOfTwenties(atm.getNbrOfTwenties() - nbrOf20s);
 	}
 
 	@Override
 	public void remove50s(int nbrOf50s) {
-		System.out.println("removed 50s " + nbrOf50s);
+		message.display(nbrOf50s + " 50s removed" );
 		atm.setNbrOfFifties(atm.getNbrOfFifties() - nbrOf50s);
 	}
 

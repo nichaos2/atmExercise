@@ -14,20 +14,18 @@ public class Distributer20s implements IDistributer {
 	AtmController atmC;
 	@Autowired
 	Demand demand;
+	@Autowired
+	IMessageHandler message;
 
 	@Override
 	public void giveMoney(Demand demand) {
 		if(demand.getAmount() >= 20) {
 			int nbrOf20s = demand.getAmount() / 20; 
 			
-			//TODO message handler
-			System.out.println("Distributed " + nbrOf20s + " 20 note(s)");
+			message.display("Distributed " + nbrOf20s + " 20 note(s)");
 			
 			atmC.remove20s(nbrOf20s);
-		}else{
-			//TODO there is no other distributer	
-		}
-		
+		}		
 	}
 
 	@Override

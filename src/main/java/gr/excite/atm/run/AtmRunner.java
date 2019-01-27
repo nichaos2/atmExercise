@@ -10,14 +10,18 @@ import gr.excite.atm.service.CombinationController;
 import gr.excite.atm.service.Distributer20s;
 import gr.excite.atm.service.Distributer50s;
 import gr.excite.atm.service.IDistributer;
+import gr.excite.atm.service.MessageHandler;
 
 public class AtmRunner {
+
+	static MessageHandler message;
 
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AtmConfiguration.class);
 
 		AtmController atmC = (AtmController) context.getBean("atmC");
 		CombinationController combC = (CombinationController) context.getBean("combC");
+		message = (MessageHandler) context.getBean("msg");
 
 		// set chain of Distributes
 		IDistributer distr50s = (Distributer50s) context.getBean("distr50s");
@@ -35,23 +39,24 @@ public class AtmRunner {
 			n++;
 			n = atmRunner.requestAnotherWithdraw(n);
 		}
-		System.out.println("Thank you. Bye bye!");
+		message.display("Thank you. Bye bye!");
 	}
 
 	private void initialiseATM(AtmController atmC) {
 		System.out.println("Enter number of 20 notes to insert to ATM ");
 		Scanner input = new Scanner(System.in);
 		int nbrOf20s = input.nextInt();
-		System.out.println("Enter number of 50 notes to insert to ATM ");
+		message.display("Enter number of 50 notes to insert to ATM ");
 		input = new Scanner(System.in);
 		int nbrOf50s = input.nextInt();
 		atmC.insert20s(nbrOf20s);
 		atmC.insert50s(nbrOf50s);
 	}
 
-	private void withdrawMoney(AtmController atmC, CombinationController combC, IDistributer distr50s, IDistributer distr20s) {
-		System.out.println("Money in ATM " + atmC.returnTotal());
-		System.out.println("Enter amount to dispense");
+	private void withdrawMoney(AtmController atmC, CombinationController combC, IDistributer distr50s,
+			IDistributer distr20s) {
+		message.display("Money in ATM " + atmC.returnTotal());
+		message.display("Enter amount to dispense");
 		Scanner input = new Scanner(System.in);
 		int amount = input.nextInt();
 		if (!combC.combinationExists(amount)) {
@@ -63,16 +68,16 @@ public class AtmRunner {
 				distr50s.giveMoney(new Demand(amount));
 
 			// show message
-			System.out.println("Total in ATM " + atmC.returnTotal());
-			System.out.println(atmC.returnNbrOf20s() + " 20 notes remaining");
-			System.out.println(atmC.retrunNbrOf50s() + " 50 notes remaining");
+			message.display("Total in ATM " + atmC.returnTotal());
+			message.display(atmC.returnNbrOf20s() + " 20 notes remaining");
+			message.display(atmC.retrunNbrOf50s() + " 50 notes remaining");
 		}
 
 	}
 
 	private int requestAnotherWithdraw(int n) {
-		System.out.println(
-				"Do you want another withdrawal? Print yes if you want or anything else to terminate the transaction");
+		message.display("Do you want another withdrawal?\n"
+				+ " Print yes if you want or anything else to terminate the transaction");
 		Scanner input = new Scanner(System.in);
 		String answer = input.nextLine();
 		if (answer.toLowerCase().equals("yes"))

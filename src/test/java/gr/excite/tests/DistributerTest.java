@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import gr.excite.atm.model.Atm;
 import gr.excite.atm.model.Demand;
 import gr.excite.atm.service.IDistributer;
+import gr.excite.atm.service.IMessageHandler;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,13 +27,15 @@ public class DistributerTest {
 	Demand demand;
 	@Autowired
 	IDistributer distr20;
+	@Autowired
+	IMessageHandler message;
 	
 	private int initial20s = 100;
 	
 	@Before
 	public void initAtm() {
 		atm.setNbrOfTwenties(initial20s);
-		System.out.println("Initialised amount in ATM " + (initial20s*20));
+		message.display("Initialised amount in ATM " + (initial20s*20));
 	}
 	
 	// same for 50s

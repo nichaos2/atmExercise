@@ -74,7 +74,7 @@ public class AtmRunner {
 		Scanner input = new Scanner(System.in);
 		int amount = input.nextInt();
 		if (!combC.combinationExists(amount)) {
-			System.out.println("Sorry for the incovenience!");
+			message.display("Sorry for the incovenience!");
 		} else {
 			if (combC.getCombination().equals("only20s"))
 				distr20s.giveMoney(new Demand(amount));
